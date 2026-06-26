@@ -1,0 +1,41 @@
+NielsenIQ Aptitude Preparation - 100 MCQs
+
+(Plain text copy saved as .docx extension; this is a text file with the same content as the markdown version.)
+
+SHORT NOTES (Concise Study Sheet)
+
+1) Python (Core & Advanced)
+- Data structures: list (ordered, mutable), tuple (ordered, immutable), set (unordered, unique), dict (key->value), and list comprehensions: [expr for x in iterable if cond].
+- OOPs: class defines attributes/methods; instance = object; inheritance allows subclass reuse/override; polymorphism = same interface, different implementations.
+- Functional programming: lambda arg: expr (anonymous single-expression function); map(fn, iterable) returns iterator in Py3; filter(fn, iterable); reduce(fn, iterable) from functools.
+- Advanced: decorators wrap functions: @decorator; generators use yield to produce sequence lazily; iterators implement __iter__ and __next__; exceptions via try/except/finally; create custom exceptions by subclassing Exception.
+- File I/O & memory management: with open('file','r') as f; use json.load/dump and csv module or pandas.read_csv for structured files; shallow copy copy.copy() (references shared), deep copy copy.deepcopy() (recursive duplicate).
+
+2) Pandas & NumPy
+- NumPy arrays: ndarray with shape and dtype; vectorized operations are fast; broadcasting rules allow operations on compatible shapes.
+- Indexing & slicing: arr[rows, cols], boolean masks; np.newaxis to change dims.
+- Pandas DataFrame & Series: pd.read_csv(), Series is 1D, DataFrame is 2D. Use merge/on, join, pd.concat for combining tables. groupby + agg and pivot_table for reshaping.
+- Data cleaning: df.dropna(), df.fillna(value), df.drop_duplicates(), df.astype(dtype) for conversions.
+- Time series: pd.to_datetime(), set index to datetime, df.resample('M').mean(), rolling windows with .rolling().
+
+3) Statistics & Probability
+- Descriptive stats: mean, median, mode; variance = E[(X-μ)^2], sd = sqrt(variance); skewness measures asymmetry, kurtosis measures tailedness.
+- Distributions: normal (continuous bell curve), binomial (discrete n trials, p success), Poisson (rare events, λ rate), uniform (equal probability).
+- Inferential stats: CLT -> sample means approximate normal for large n; confidence interval: point estimate ± z*(σ/√n) or t*(s/√n) when σ unknown.
+- Hypothesis testing: use appropriate test (z, t, chi-square, ANOVA); small p-value (<α) leads to rejecting H0; Type I error = α (false positive), Type II = β (false negative).
+- Correlation & regression: Pearson measures linear correlation, Spearman measures rank (monotonic) correlation; linear regression fits y = β0 + β1 x via OLS, R^2 indicates fraction of variance explained.
+
+4) Scikit-Learn (Machine Learning)
+- Regression: LinearRegression (OLS), Ridge (L2 penalty), Lasso (L1 penalty). Evaluate with R^2, RMSE, MAE.
+- Classification: LogisticRegression, DecisionTreeClassifier, RandomForestClassifier (ensemble), SVM, Naive Bayes.
+- Metrics: confusion matrix (TP, TN, FP, FN), accuracy, precision = TP/(TP+FP), recall = TP/(TP+FN), F1 = 2*(prec*rec)/(prec+rec); ROC curve (TPR vs FPR) and AUC.
+- Unsupervised: KMeans clusters into k clusters; PCA reduces dimensionality via eigen decomposition of covariance matrix.
+- Pipelines & preprocessing: StandardScaler, MinMaxScaler, OneHotEncoder, train_test_split, cross-validation and hyperparameter search via GridSearchCV and Pipelines.
+
+5) Quantitative Aptitude (Quant)
+- Probability & Combinatorics: permutations nPr = n!/(n-r)!, combinations nCr = n!/(r!(n-r)!), Bayes theorem P(A|B) = P(B|A)P(A)/P(B).
+- Data interpretation: read caselets/tables/graphs, compute percentages, growth rates, index numbers and ratios.
+- Business Math: percentages, ratios, averages, profit & loss, simple/compound interest, mixtures & alligation.
+- Algebra & series: Solve linear/quadratic equations, AP: a_n = a + (n-1)d, S_n = n/2*(2a+(n-1)d). GP: a*r^(n-1), S_n = a*(1-r^n)/(1-r) for r!=1.
+
+(Questions and answers same as the markdown file in prep/NielsenIQ_Aptitude_MCQs.md)
