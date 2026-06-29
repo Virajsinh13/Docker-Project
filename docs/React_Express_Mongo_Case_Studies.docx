@@ -1,0 +1,171 @@
+ReactJS and ExpressJS & MongoDB Case Studies - Questions and Answers
+
+Title: ReactJS & ExpressJS/MongoDB Case Studies
+
+ReactJS Case Studies (5 Marks Each)
+
+Case Study 1 – Props and Parent-Child Communication
+1. What are Props in React?
+- Props (short for "properties") are read-only inputs that a parent component passes to a child component. They allow components to receive data and configuration from their parents. Props are immutable inside the receiving component.
+
+2. How does Parent-to-Child communication take place using Props?
+- The parent passes attributes on the child component JSX, e.g., <CourseCard name="React" duration="4 weeks" fees={200} />. The child component receives these values via its props parameter (function child: props.name or destructured {name}). This is a unidirectional data flow: parent → child.
+
+3. What are the advantages of using Props in a React application?
+- Clear data flow and separation of concerns.
+- Reusable components with configurable behavior.
+- Easier testing and predictable rendering since props are immutable within children.
+- Enables composition and dynamic rendering based on parent state or data.
+
+Case Study 2 – useState Hook
+1. What is State in React?
+- State is component-specific mutable data that determines what a component renders. When state changes, React re-renders the component (and its children) to reflect the new UI.
+
+2. What is the purpose of the useState Hook?
+- useState is a React Hook that lets function components have state: const [value, setValue] = useState(initialValue). It returns the current state and a setter function to update it.
+
+3. How does updating state cause the component to re-render?
+- Calling the state setter (e.g., setCount(newCount)) schedules a state update. React compares the new state with the previous one, and when it changes, React will re-render the component (and reconcile the DOM) to reflect the new UI.
+
+Case Study 3 – useEffect and Data Fetching
+1. What is a side effect in React?
+- A side effect is any operation that affects something outside the component’s render (e.g., network requests, subscriptions, timers, DOM manipulations, logging). Side effects should be performed outside of render logic.
+
+2. Why is useEffect used for API calls?
+- useEffect runs after render and is the appropriate place to perform side effects like fetching data. It ensures data fetches happen at controlled times (on mount, on dependency change) and allows cleanup when necessary.
+
+3. What is the purpose of the dependency array in useEffect?
+- The dependency array ([dep1, dep2]) controls when the effect runs: empty array [] runs once on mount; omitted runs after every render; specific deps run when any listed dependency changes. It prevents unnecessary or repeated side effects.
+
+Case Study 4 – Context API
+1. What is Prop Drilling?
+- Prop drilling occurs when data must be passed through multiple intermediate components that do not need it, solely to reach deeply nested components. This leads to verbose and brittle code.
+
+2. How does Context API solve this problem?
+- Context lets you define a provider at a high level and consumer(s) anywhere in the subtree. Components can read context values directly without intermediate props, eliminating prop drilling.
+
+3. What are the benefits of using Context API?
+- Cleaner component interfaces (fewer props).
+- Easier global or cross-cutting state sharing (e.g., auth, theme, locale).
+- Reduced boilerplate and lower coupling between intermediate components and shared data.
+
+Case Study 5 – React.memo(), useMemo(), and useCallback()
+Explain their roles in improving performance:
+- React.memo(component): A higher-order component that memoizes a functional component’s rendered output. If props are shallowly equal between renders, React skips re-rendering that component. Useful for preventing unnecessary re-renders of pure child components.
+- useMemo(() => computeValue, [deps]): Memoizes an expensive computation result so it’s recomputed only when dependencies change. Prevents recomputation each render.
+- useCallback(fn, [deps]): Returns a memoized function reference that changes only when deps change. Useful for passing stable callback references to children (to avoid child re-renders when props include callbacks).
+Combined pattern: useCallback to stabilize function props, useMemo for expensive derived values, and React.memo on children to skip rerender when inputs are unchanged — together reduce unnecessary renders and expensive recalculations.
+
+
+ExpressJS & MongoDB Case Studies (5 Marks Each)
+
+Case Study 1 – ExpressJS Routing
+1. What is ExpressJS?
+- ExpressJS is a minimal, flexible Node.js web application framework that provides routing, middleware support, and utilities to build web servers and APIs.
+
+2. What are Routes in ExpressJS?
+- Routes define endpoints (URLs) and the HTTP methods (GET, POST, etc.) that handle incoming requests. Each route has a path and a handler function (req, res) => { ... }.
+
+3. Differentiate between GET and POST requests with suitable examples.
+- GET: Retrieves data. Example: GET /courses returns a list of courses. GET should be idempotent and not change server state.
+- POST: Submits data to create a resource. Example: POST /register with student details to enroll a student. POST is not necessarily idempotent and can change server state.
+
+Case Study 2 – Request and Response Objects
+1. What is the Request Object (req)?
+- req represents the incoming HTTP request. It contains request data (headers, query string in req.query, route params in req.params, body in req.body, cookies, etc.).
+
+2. What is the Response Object (res)?
+- res represents the HTTP response an Express app sends back. It provides methods like res.send(), res.json(), res.status(), res.redirect(), and res.render().
+
+3. How are these objects used in ExpressJS applications?
+- A route handler receives (req, res) and reads input from req (e.g., req.body for POST) and uses res to send the result (e.g., res.status(201).json({id, ...})).
+
+Case Study 3 – Middleware
+1. What is Middleware in ExpressJS?
+- Middleware are functions that run between request arrival and final route handler. They can inspect/modify req/res, perform auth, logging, parsing, or end the response.
+
+2. What is the purpose of the next() function?
+- next() passes control to the next middleware in the chain. Without calling next (or ending the response), the request will hang.
+
+3. What are the advantages of using middleware?
+- Separation of concerns (logging, auth, parsing).
+- Reusability across routes.
+- Centralized processing (error handling, input validation).
+- Easier composition of request handling logic.
+
+Case Study 4 – MVC Architecture
+1. What is MVC Architecture?
+- MVC (Model-View-Controller) is a design pattern that separates an application into Models (data & business rules), Views (UI/representation), and Controllers (request handling & orchestrating between model and view).
+
+2. What are the roles of Model, View, and Controller?
+- Model: Defines data structure and DB interactions.
+- View: Presents data to users (HTML, templates, frontend).
+- Controller: Receives user input/request, uses models to get/update data, and returns a view/response.
+
+3. Why is MVC preferred for large applications?
+- Clear separation of concerns improves maintainability, testability, and team collaboration. It helps organize code for scaling and reduces coupling.
+
+Case Study 5 – REST API
+1. What is a REST API?
+- REST (Representational State Transfer) is an architectural style for designing networked applications that use stateless HTTP methods to operate on resources identified by URLs.
+
+2. Which HTTP methods are commonly used in REST APIs?
+- GET (read), POST (create), PUT/PATCH (update), DELETE (delete). Often OPTIONS and HEAD are used as well.
+
+3. How does REST API facilitate communication between client and server?
+- By exposing resource-based endpoints with predictable semantics and status codes, allowing clients to CRUD resources over HTTP in a standardized way.
+
+Case Study 6 – MongoDB and Mongoose
+1. What is Mongoose?
+- Mongoose is an ODM (Object Data Modeling) library for Node.js that provides a schema-based solution to model application data for MongoDB, including validation, middleware, and query helpers.
+
+2. What is the difference between a Schema and a Model?
+- Schema: Defines the structure, types, constraints, and validation of documents.
+- Model: A compiled constructor from a schema used to create and query documents (e.g., const Student = mongoose.model('Student', studentSchema)).
+
+3. What are the advantages of using Mongoose with MongoDB?
+- Schema enforcement, validation, middleware (pre/post hooks), query helpers, easier data modeling, and abstraction that simplifies DB operations.
+
+Case Study 7 – API Development with Mongoose
+1. How does ExpressJS interact with MongoDB using Mongoose?
+- Express route handlers call Mongoose model methods (e.g., Model.create(), Model.find(), Model.findByIdAndUpdate()) to perform DB operations. Mongoose returns Promises (or uses callbacks), which the handler awaits and responds with appropriate HTTP responses.
+
+2. Why is data validation important?
+- To ensure data integrity, prevent malformed data from entering the database, enforce business rules, and protect against security issues (e.g., injection, missing required fields).
+
+3. What is the role of a Mongoose model in API development?
+- The model provides methods to create, read, update, and delete documents; defines schema-level validation; and centralizes DB logic for the API.
+
+Case Study 8 – EJS Template Engine
+1. What is a Template Engine?
+- A template engine generates HTML by combining templates with data. It enables server-side rendering of dynamic content.
+
+2. What is EJS?
+- EJS (Embedded JavaScript) is a simple templating language for Node.js that embeds JavaScript logic into HTML using <% %> tags and outputs values with <%= %>.
+
+3. How does EJS help in rendering dynamic HTML content?
+- EJS templates accept data passed from the server (res.render('template', data)) and produce HTML with dynamic values and control flow (loops, conditionals) on the server before sending to the client.
+
+Case Study 9 – CORS
+1. What is CORS?
+- CORS (Cross-Origin Resource Sharing) is a browser security mechanism that controls which origins are allowed to access resources on a server using additional HTTP headers.
+
+2. Why does the browser block cross-origin requests?
+- For security: browsers restrict cross-origin HTTP requests from scripts to prevent malicious websites from reading sensitive data from other origins without explicit permission.
+
+3. How does enabling CORS solve this issue?
+- The server responds with appropriate CORS headers (e.g., Access-Control-Allow-Origin: http://localhost:3000) which tell the browser that the requesting origin is allowed. In Express, the cors middleware simplifies adding these headers.
+
+Case Study 10 – Sending Emails with Nodemailer
+1. What is Nodemailer?
+- Nodemailer is a Node.js module that enables sending emails from server-side applications using SMTP or service providers (Gmail, SendGrid, etc.).
+
+2. How does Nodemailer help in Node.js applications?
+- It simplifies composing, sending, and configuring email transport (authentication, TLS), supports attachments, templating, and integrates with services and SMTP.
+
+3. Mention two real-world use cases of automated emails.
+- Sending registration/confirmation emails when a user signs up.
+- Sending password reset links, order receipts, or scheduled reports/notifications.
+
+
+(End of document)
